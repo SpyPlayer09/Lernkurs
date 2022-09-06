@@ -1,0 +1,50 @@
+﻿GameObjects:
+    Erstellen von GameObjects in der Hierarchy
+    Eingehen auf die einzelnen Components, Transform - Mesh Filter - Mesh Renderer - Box Collider
+    Rigidbody Component - Kinematic oder Gravity
+    
+    Transform World Space - Local Space
+    Parenting von GameObjects
+    
+Code:
+    Monobehaviour
+    Start/Awake und Update
+    Debug.Log
+    
+    Felder - public private [SerializeField]
+    Methoden - public private
+    
+    Transform Based Movement -> Move Platform
+    Rigidbody Based Movement -> Move Player
+    
+    Jumping / Raycasting for Ground / LayerMasks
+    
+    Shooting / Coroutines / Tags / Trigger Collider
+    Prefabs / Instantiate / Destroy / Resource Load
+    
+    Scenes / Scene Management / Load Scene / DontDestroyOnLoad
+    
+Kamera:
+    2d / 3d / Orthographic / Perspective
+    
+    
+Build:
+    Alle Szenen in den Einstellungen auswählen
+    Die oberste Szene ist die Start Szene, build in eigenen Ordner
+
+
+
+File Management:
+    
+
+
+Git:
+    Erstellen von einem Git Repo in einem leeren Folder. Dann move die Files in den Folder. Dann Relocate und Publish.
+    Kleine Commits - getrenntes arbeiten an eigenen Scenes und eigenen Skripten um Fehler zu vermeiden
+    Rider für Merge Errors
+    
+C# Events:
+    Erstellen der Code Events
+    Abonnieren der einzelnen Events 
+    Anonyme Delegaten oder direkter Funktionsaufruf
+    Deabonnieren der Events

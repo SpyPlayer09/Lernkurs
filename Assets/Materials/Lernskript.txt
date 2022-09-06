@@ -1,0 +1,51 @@
+Gameobjects:
+	Standard Gamecomponents 
+	Add Component
+	Rigidbody
+	
+File Management:
+	Prefabs
+	Ressources
+	
+Scene Hierarchy:
+	World Space 
+	Parenting 
+	Local Space
+	
+Code:
+	MonoBehaviour
+	Start / Awake
+	Update
+	
+	Transform Based Movement
+	Physics Based Movement
+	
+	RayCasting und Collision
+	Tags und Layers
+	
+	Coroutines
+	
+Kamera:
+	Orthografisch Perspektivisch
+	
+Scenemanagement:
+	Mehrere Scenes
+	Beibehalten von Objekten
+	Build Scenes
+	
+Git:
+    Gitignore
+    Push and Pull
+    Resolve Merge Errors
+    
+	
+
+	
+	
+Ausblick: 
+	C# Events und Input Management
+	
+
+
+
+
