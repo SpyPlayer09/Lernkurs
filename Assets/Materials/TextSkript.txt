@@ -1,50 +1,96 @@
 ﻿GameObjects:
     Erstellen von GameObjects in der Hierarchy
     Eingehen auf die einzelnen Components, Transform - Mesh Filter - Mesh Renderer - Box Collider
-    Rigidbody Component - Kinematic oder Gravity
+    Rigidbody Component
+    Collider
+    Collision werten nur gewertet wenn ein Rigidbody vorhanden ist und beide einen Collider haben
+    Kinematic - Kräfte auf dem Objekt werden nicht mehr simuliert
+    Interpolate - smoothed zwischen den fixed Physic frames
+    Collision Detection - Continuous für Wände die Schnelle Objekte fangen müssen - Discrete für langsam, Dynamic für schnelle Objekte, speculative für günstig
+    Collision Matrix - welche Kollisionen ignoriert werden sollen, //Project Settings/Physics
+    
     
     Transform World Space - Local Space
     Parenting von GameObjects
     
 Code:
-    Monobehaviour
-    Start/Awake und Update
-    Debug.Log
+    Camera Controller:
+        Monobehaviour
+        Start/Awake und Update
     
-    Felder - public private [SerializeField]
-    Methoden - public private
+    PlayerPhysic:
+        Felder - public private [SerializeField]
+        InputManager:
+            PacketManager
+            com.unity.inputsystem
+            Player Input Component
+            Input Action Asset
+            Invoke Unity Events
+        
+        FixedUpdate - Kein Deltatime, da unnötig
+        
+        Springen:
+            Grounded über Raycast:
+                Physics Layers
+                
+                Erweiterter Raycast für nähere Infos
+            Check if grounded - Dann Velocity nach oben setzen
+        
     
-    Transform Based Movement -> Move Platform
-    Rigidbody Based Movement -> Move Player
     
-    Jumping / Raycasting for Ground / LayerMasks
+    MovePlatform:
+        Transform Translate
+        Problem: Keine Garantie den Punkt zu erreichen, bzw. ihn exakt zu erreichen
+        Normales Update - Aber Deltatime
+        Problem: Player bleibt nicht auf der Plattform - Lösung: Parenting mit OnCollisionEnter und Exit
     
-    Shooting / Coroutines / Tags / Trigger Collider
-    Prefabs / Instantiate / Destroy / Resource Load
+    PlayerController #2:
+        Schießen:
+            Prefabs - Bullet: 
+                Trigger Collider
+                Tags
+                Destroy Gameobjects
+            Coroutines 
+        Kurzer Einblick - Resources Folder
+            
+    Enemy Script:
+        Enemy GameComponent als Tag mit Enemy - außerdem Benennung der Skripte wegen GetComponent
     
-    Scenes / Scene Management / Load Scene / DontDestroyOnLoad
+SceneManagement:
+    Scenes in den Build Optionen einrichten
+    SceneManager.LoadScene
+    DontDestroyOnLoad um Objekte am Leben zu erhalten
     
-Kamera:
-    2d / 3d / Orthographic / Perspective
-    
+2D Scene:
+    Sprite Renderer Component
+    Unterschiede in der Kamera (Material und Licht)
+        
     
 Build:
     Alle Szenen in den Einstellungen auswählen
     Die oberste Szene ist die Start Szene, build in eigenen Ordner
-
-
-
-File Management:
-    
-
+    Game View in den richtigen Einstellungen - UI bricht euch sonst das Genick
 
 Git:
+    Folder in Windows eingeben - Ansicht Erweitert - Ausgeblendete Dateien anzeigen lassen
     Erstellen von einem Git Repo in einem leeren Folder. Dann move die Files in den Folder. Dann Relocate und Publish.
     Kleine Commits - getrenntes arbeiten an eigenen Scenes und eigenen Skripten um Fehler zu vermeiden
     Rider für Merge Errors
     
-C# Events:
+UI:
+    Erstellen eines UI Elements
+    TMP Essentials importieren
+    EventSystem auf das neue System ändern
+    CanvasScaler - UI Scale Mode - Scale with Screen Size - Reference Resolution - 1920x1080
+    Button On Click Event
+    
+    
+C# Events:  
+    Kopieren der Scene
+    InputManager auf Invoke C# Events umstellen
+    Asset Generate C# Class aktivieren
     Erstellen der Code Events
     Abonnieren der einzelnen Events 
     Anonyme Delegaten oder direkter Funktionsaufruf
+    OnEnable und OnDisable.
     Deabonnieren der Events

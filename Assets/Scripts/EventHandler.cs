@@ -13,7 +13,7 @@ public class EventHandler : MonoBehaviour
     private InputAction look;
     private InputAction shoot;
 
-    private PlayerPhysic playerObject;
+    private PlayerController playerObject;
 
     public bool shouldJam = true;
     
@@ -25,7 +25,7 @@ public class EventHandler : MonoBehaviour
         look = lernkurs.Player.Look;
         shoot = lernkurs.Player.Fire;
         
-        playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerPhysic>();
+        playerObject = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
         
         move.started += playerObject.Move;
         move.canceled += playerObject.Move;
@@ -39,6 +39,7 @@ public class EventHandler : MonoBehaviour
 
     private void OnEnable()
     {
+        //Events müssen alle einzeln aktiviert werden
         move.Enable();
         jump.Enable();
         look.Enable();
@@ -61,6 +62,11 @@ public class EventHandler : MonoBehaviour
     public void UnjamWeapon()
     {
         shoot.performed += playerObject.Shoot;
+    }
+
+    public void ChangeJamState()
+    {
+        shouldJam = !shouldJam;
     }
     
     private IEnumerator WaitAndUnjam()

@@ -4,30 +4,29 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerPhysic : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
+    private Rigidbody rigbody;
 
     private Vector2 direction;
     [SerializeField] private int moveSpeed = 10;
-    [SerializeField] private int jumpForce = 2;
 
     private Vector3 velocity;
-
     private float rotation;
+    
+    [SerializeField] private int jumpForce = 2;
 
     [SerializeField] private GameObject bullet;
-    
+
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rigbody = GetComponent<Rigidbody>();
         //bullet = Resources.Load<GameObject>("Bullet");
     }
     
     public void Move(InputAction.CallbackContext ctx)
     {
-        Vector2 inp = ctx.ReadValue<Vector2>();
-        direction = inp;
+        direction = ctx.ReadValue<Vector2>();
     }
 
     public void Look(InputAction.CallbackContext ctx)
@@ -35,23 +34,9 @@ public class PlayerPhysic : MonoBehaviour
         Vector2 inp = ctx.ReadValue<Vector2>();
         rotation = inp.x / 10f;
     }
-
-    private bool Grounded()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, 1.05f, 1 << LayerMask.NameToLayer("Default")); //Warum diese Syntax
-    }
-
-    public void Jump()
-    {
-        if (Grounded())
-        {
-            Vector3 jumpvel = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
-            rb.velocity = jumpvel;
-        }
-    }
-
+    
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 forward = transform.forward;
         Vector3 right = transform.right;
@@ -62,25 +47,46 @@ public class PlayerPhysic : MonoBehaviour
         forward.Normalize();
         right.Normalize();
 
-        velocity = (forward * direction.y + right * direction.x)  * Time.deltaTime;
-
-        velocity.Normalize();
+        velocity = forward * direction.y + right * direction.x;
         velocity *= moveSpeed;
 
-        velocity.y = rb.velocity.y;
+        velocity.y = rigbody.velocity.y;
 
-        rb.velocity = velocity;
+        rigbody.velocity = velocity;
         
         transform.Rotate(Vector3.up, rotation);
     }
+
+    private bool Grounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, 1.05f, 1 << LayerMask.NameToLayer("Default")); //Warum diese Syntax
+    }
     
+    /* 
+    private RaycastHit GetGround()
+    {
+        RaycastHit hit;
+        Physics.Raycast(transform.position, Vector3.down, out hit, 10f, 1 << LayerMask.NameToLayer("Default"));
+        return hit;
+    }
+    */
+
+    public void Jump()
+    {
+        if (Grounded())
+        {
+            Vector3 jumpvel = new Vector3(rigbody.velocity.x, jumpForce, rigbody.velocity.z);
+            rigbody.velocity = jumpvel;
+        }
+    }
+
     private bool canShoot = true;
     
     public void Shoot(InputAction.CallbackContext ctx)
     {
         if (canShoot)
         {
-            GameObject bulletInstance = Instantiate(bullet, transform.position + transform.forward, transform.rotation);
+            Instantiate(bullet, transform.position + transform.forward, transform.rotation); //Gibt als Return die Instanz zurück
             StartCoroutine(ShootDelay());
         }
     }

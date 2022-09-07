@@ -21,21 +21,6 @@ public class MovePlatform : MonoBehaviour
         direction = (endPos - startPos) / 10;
         direction = direction * speed;
     }
-    
-    /*
-    private void Update()
-    {
-        if (forward)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
-        }
-        SwitchDirection();
-    }
-    */
 
     private void Update()
     {
@@ -60,6 +45,19 @@ public class MovePlatform : MonoBehaviour
     }
     
     /*
+    private void Update()
+    {
+        if (forward)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
+        }
+        SwitchDirection();
+    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
