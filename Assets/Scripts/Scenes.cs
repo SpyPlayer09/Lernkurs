@@ -10,11 +10,6 @@ public class Scenes : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
-    
-    public void SwitchScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
 
     private void Awake()
     {

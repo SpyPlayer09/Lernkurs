@@ -14,12 +14,10 @@
     Parenting von GameObjects
     
 Code:
-    Camera Controller:
+    PlayerController:
         Monobehaviour
-        Start/Awake und Update
-    
-    PlayerPhysic:
         Felder - public private [SerializeField]
+        RequireComponent
         InputManager:
             PacketManager
             com.unity.inputsystem
@@ -28,6 +26,9 @@ Code:
             Invoke Unity Events
         
         FixedUpdate - Kein Deltatime, da unnötig
+        Documentation:
+            https://docs.unity3d.com/ScriptReference/MonoBehaviour.html
+            https://docs.unity3d.com/Manual/ExecutionOrder.html
         
         Springen:
             Grounded über Raycast:
@@ -37,12 +38,12 @@ Code:
             Check if grounded - Dann Velocity nach oben setzen
         
     
-    
     MovePlatform:
         Transform Translate
         Problem: Keine Garantie den Punkt zu erreichen, bzw. ihn exakt zu erreichen
         Normales Update - Aber Deltatime
         Problem: Player bleibt nicht auf der Plattform - Lösung: Parenting mit OnCollisionEnter und Exit
+        OnDrawGizmos / Ondrawgizmosselected
     
     PlayerController #2:
         Schießen:
@@ -62,20 +63,9 @@ SceneManagement:
     DontDestroyOnLoad um Objekte am Leben zu erhalten
     
 2D Scene:
+    2D Editor Mode
     Sprite Renderer Component
     Unterschiede in der Kamera (Material und Licht)
-        
-    
-Build:
-    Alle Szenen in den Einstellungen auswählen
-    Die oberste Szene ist die Start Szene, build in eigenen Ordner
-    Game View in den richtigen Einstellungen - UI bricht euch sonst das Genick
-
-Git:
-    Folder in Windows eingeben - Ansicht Erweitert - Ausgeblendete Dateien anzeigen lassen
-    Erstellen von einem Git Repo in einem leeren Folder. Dann move die Files in den Folder. Dann Relocate und Publish.
-    Kleine Commits - getrenntes arbeiten an eigenen Scenes und eigenen Skripten um Fehler zu vermeiden
-    Rider für Merge Errors
     
 UI:
     Erstellen eines UI Elements
@@ -84,7 +74,27 @@ UI:
     CanvasScaler - UI Scale Mode - Scale with Screen Size - Reference Resolution - 1920x1080
     Button On Click Event
     
+Importing:
+    Pixels per Unit
+    Import Settings:
+        No Filter
+        No Compression
+    Multiple Sprites
+    Slicing
     
+        
+Build:
+    Alle Szenen in den Einstellungen auswählen
+    Die oberste Szene ist die Start Szene, build in eigenen Ordner
+    Game View in den richtigen Einstellungen - UI bricht euch sonst das Genick
+    WebGl Build, direkt in Itch io playable
+
+Git:
+    Folder in Windows eingeben - Ansicht Erweitert - Ausgeblendete Dateien anzeigen lassen
+    Erstellen von einem Git Repo in einem leeren Folder. Dann move die Files in den Folder. Dann Relocate und Publish.
+    Kleine Commits - getrenntes arbeiten an eigenen Scenes und eigenen Skripten um Fehler zu vermeiden
+    Rider für Merge Errors
+      
 C# Events:  
     Kopieren der Scene
     InputManager auf Invoke C# Events umstellen

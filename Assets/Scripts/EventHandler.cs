@@ -31,7 +31,7 @@ public class EventHandler : MonoBehaviour
         move.canceled += playerObject.Move;
         look.started += playerObject.Look;
         look.canceled += playerObject.Look;
-        jump.started += (ctx) => playerObject.Jump();
+        jump.started += (ctx) => playerObject.Jump(ctx);
         shoot.performed += playerObject.Shoot;
 
         StartCoroutine(WaitAndUnjam());

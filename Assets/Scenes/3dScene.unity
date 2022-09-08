@@ -319,7 +319,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 508876645}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b169b0d0411d08641a7ee523d4998325, type: 3}
+  m_Script: {fileID: 11500000, guid: f3c15d3c1ad00454b8236cf678084ab0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &508876647
@@ -646,7 +646,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1934284131}
-        m_TargetAssemblyTypeName: PlayerPhysic, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Move
         m_Mode: 0
         m_Arguments:
@@ -734,9 +734,9 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1934284131}
-        m_TargetAssemblyTypeName: PlayerPhysic, Assembly-CSharp
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Jump
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,21 +23,16 @@ public class MovePlatform : MonoBehaviour
         direction = direction * speed;
     }
 
-    private void Update()
-    {
-        transform.Translate(direction * Time.deltaTime);
-    }
-
     private void SwitchDirection()
     {
-        if (transform.position == endPos)
+        if (forward)
         {
             direction = (startPos - endPos) / 10;
             direction = direction * speed;
             forward = false;
         }
 
-        if (transform.position == startPos)
+        if (!forward)
         {
             direction = (endPos - startPos) / 10;
             direction = direction * speed;
@@ -44,7 +40,7 @@ public class MovePlatform : MonoBehaviour
         }
     }
     
-    /*
+    
     private void Update()
     {
         if (forward)
@@ -55,8 +51,12 @@ public class MovePlatform : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, startPos, speed * Time.deltaTime);
         }
-        SwitchDirection();
+        if (transform.position == endPos && forward || transform.position == startPos && !forward)
+        {
+            forward = !forward;
+        }
     }
+    
     
     private void OnCollisionEnter(Collision collision)
     {
@@ -73,5 +73,11 @@ public class MovePlatform : MonoBehaviour
             collision.transform.parent = null;
         }
     }
-    */
+    
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(startPos, endPos);
+    }
 }

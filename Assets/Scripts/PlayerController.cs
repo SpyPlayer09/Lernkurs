@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     public void Look(InputAction.CallbackContext ctx)
     {
         Vector2 inp = ctx.ReadValue<Vector2>();
-        rotation = inp.x / 10f;
+        rotation = inp.x;
     }
     
     // Update is called once per frame
@@ -71,12 +71,15 @@ public class PlayerController : MonoBehaviour
     }
     */
 
-    public void Jump()
+    public void Jump(InputAction.CallbackContext ctx)
     {
-        if (Grounded())
+        if (ctx.started)
         {
-            Vector3 jumpvel = new Vector3(rigbody.velocity.x, jumpForce, rigbody.velocity.z);
-            rigbody.velocity = jumpvel;
+          if (Grounded())
+          {
+              Vector3 jumpvel = new Vector3(rigbody.velocity.x, jumpForce, rigbody.velocity.z);
+              rigbody.velocity = jumpvel;
+          }  
         }
     }
 
